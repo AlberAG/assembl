@@ -141,6 +141,7 @@ class CeleryWithConfig(Celery):
         import assembl.tasks.notify
         import assembl.tasks.notification_dispatch
         import assembl.tasks.translate
+        import assembl.tasks.watson
 
 
 celery = CeleryWithConfig('celery_tasks')
