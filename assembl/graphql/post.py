@@ -22,7 +22,7 @@ from jwzthreading import restrip_pat
 import assembl.graphql.docstrings as docs
 from .permissions_helpers import require_cls_permission
 from .document import Document
-from .idea import Idea
+from .idea import Idea, TagResult
 from .langstring import (LangStringEntry, resolve_best_langstring_entries,
                          resolve_langstring)
 from .sentiment import SentimentCounts, SentimentTypes
@@ -107,6 +107,8 @@ class PostInterface(SQLAlchemyInterface):
     type = graphene.String(description=docs.PostInterface.type)
     discussion_id = graphene.String(description=docs.PostInterface.discussion_id)
     modified = graphene.Boolean(description=docs.PostInterface.modified)
+    keywords = graphene.List(TagResult, description=docs.PostInterface.keywords)
+    nlp_sentiment = graphene.Float(description=docs.PostInterface.nlp_sentiment)
 
     def resolve_db_id(self, args, context, info):
         return self.id
@@ -231,6 +233,16 @@ class PostInterface(SQLAlchemyInterface):
 
     def resolve_modified(self, args, context, info):
         return self.get_modification_date() > self.creation_date
+
+    def resolve_keywords(self, args, context, info):
+        return [TagResult(score=r.score, value=r.value)
+                for r in self.nlp_keywords()]
+
+    def resolve_nlp_sentiment(self, args, context, info):
+        sentiments = self.watson_sentiments
+        if sentiments:
+            # assume only one for now
+            return sentiments[0].sentiment
 
 
 class Post(SecureObjectType, SQLAlchemyObjectType):
