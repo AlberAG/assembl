@@ -287,7 +287,7 @@ class Idea extends React.Component {
                 <div className="max-container">
                   <div className="content-section">
                     <Announcement
-                      ideaWithPostsData={ideaWithPostsData}
+                      idea={ideaWithPostsData.idea}
                       announcementContent={announcement}
                       isMultiColumns={isMultiColumns}
                     />
