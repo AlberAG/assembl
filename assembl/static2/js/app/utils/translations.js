@@ -415,6 +415,7 @@ const Translations = {
         numberOfResponses_0: "Aucune réponse",
         numberOfResponses_1: "%{count} réponse",
         postSuccessMsg: "Merci pour votre participation. Votre fiction a bien été publiée !",
+        sideCommentSuccessMsg: "Votre commentaire a été publié avec succès !",
         saveDraft: "Sauvegarder",
         startFictionLabel: "Je partage ma fiction",
         commentFiction: {
@@ -1318,6 +1319,7 @@ const Translations = {
         numberOfResponses_0: "No response",
         numberOfResponses_1: "%{count} response",
         postSuccessMsg: "Thanks for your participation. Your fiction has been published successfully!",
+        sideCommentSuccessMsg: "Your comment has been published successfully!",
         saveDraft: "Save",
         startFictionLabel: "Share a fiction",
         commentFiction: {
